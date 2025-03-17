@@ -1,0 +1,26 @@
+services:
+  postgres:  # (2) Define the "postgres" service
+    image: postgres:latest  # (3) Use the latest PostgreSQL image
+    container_name: mypostgres  # (4) Name the container "mypostgres"
+    restart: always  # (5) Always restart the container if it crashes
+    environment:  # (6) Set environment variables for PostgreSQL
+      POSTGRES_USER: admin  # (7) Username for PostgreSQL
+      POSTGRES_PASSWORD: secret  # (8) Password for the user
+      POSTGRES_DB: mydatabase  # (9) Default database created at startup
+    ports:
+      - "5432:5432"  # (10) Map host port 5432 to container port 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # (11) Persist database data
+
+  pgadmin:  # (12) Define the "pgadmin" service
+    image: dpage/pgadmin4  # (13) Use the official pgAdmin image
+    container_name: mypgadmin  # (14) Name the container "mypgadmin"
+    restart: always  # (15) Restart pgAdmin if it crashes
+    environment:  # (16) Set environment variables for pgAdmin
+      PGADMIN_DEFAULT_EMAIL: admin@example.com  # (17) Login email
+      PGADMIN_DEFAULT_PASSWORD: secret  # (18) Login password
+    ports:
+      - "5050:80"  # (19) Map port 5050 on the host to port 80 in the container
+
+volumes:
+  pgdata:  # (20) Define a named volume for PostgreSQL data persistence

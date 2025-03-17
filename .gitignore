@@ -23,6 +23,10 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# Rider / JetBrains IDEs
+.idea/
+*.sln.DotSettings.user
+
 # .NET Core
 project.lock.json
 project.fragment.lock.json
@@ -35,20 +39,49 @@ ScaffoldingReadMe.txt
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
+packages/
+!packages/repositories.config
 
-# Others
-~$*
-*~
-CodeCoverage/
-
-# MSBuild Binary and Structured Log
-*.binlog
-
-# MSTest test Results
+# Test & Debug Files
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+coverage/
+*.trx
+*.coverage
 
 # NUnit
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Local Configs & User Settings
+*.user
+.vscode/
+*.suo
+*.bak
+*.swp
+*.orig
+
+# Launch settings (local debugging)
+Properties/launchSettings.json
+
+# Database-related files
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# XUnit cache & generated files
+xunit.runner.json
+
+# Rider / JetBrains database tools
+.idea/dataSources.xml
+.idea/sqldialects.xml
+.idea/encodings.xml
+
+# Docker-related
+docker-compose.override.yml
+docker-compose.*.override.yml
