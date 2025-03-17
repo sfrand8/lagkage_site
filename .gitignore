@@ -61,6 +61,8 @@ nunit-*.xml
 *.bak
 *.swp
 *.orig
+appsettings.Development.json
+
 
 # Launch settings (local debugging)
 Properties/launchSettings.json

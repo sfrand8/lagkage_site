@@ -1,14 +1,20 @@
 ﻿using System.Reflection;
 using DbUp;
 using DbUp.Engine;
+using Microsoft.Extensions.Configuration;
 
 internal class Program
 {
     static int Main(string[] args)
     {
-        var connectionString =
-            args.FirstOrDefault()
-            ?? "Host=localhost;Port=5432;Database=mydatabase;Username=admin;Password=secret;SearchPath=lagkage";
+        // Set up the configuration to read from appsettings.json
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true) 
+            .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true) 
+            .Build();
+
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         var result = DbUpMigrator.RunMigrations(connectionString);
 
