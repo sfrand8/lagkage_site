@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage-minimal", "Lagkage-minimal\Lagkage-minimal.csproj", "{62E8A849-391E-4797-AD5F-45CEA330D60B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage", "Lagkage\Lagkage.csproj", "{BAF27905-3290-40A6-AC51-A2B2C41E20CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.DbUp", "Lagkage.DbUp\Lagkage.DbUp.csproj", "{9C69F6DC-35E4-413E-9896-69CAC50FDAAF}"
@@ -14,10 +12,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{62E8A849-391E-4797-AD5F-45CEA330D60B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62E8A849-391E-4797-AD5F-45CEA330D60B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62E8A849-391E-4797-AD5F-45CEA330D60B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62E8A849-391E-4797-AD5F-45CEA330D60B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
