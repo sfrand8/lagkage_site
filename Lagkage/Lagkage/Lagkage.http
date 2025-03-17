@@ -1,6 +1,0 @@
-@Lagkage_HostAddress = http://localhost:5225
-
-GET {{Lagkage_HostAddress}}/api/cakelayers/
-Accept: application/json
-
-###
