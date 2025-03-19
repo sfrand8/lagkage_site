@@ -1,4 +1,6 @@
-﻿namespace Lagkage.Database;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace Lagkage.Database;
 
 public static class DBServiceCollectionExtensions
 {

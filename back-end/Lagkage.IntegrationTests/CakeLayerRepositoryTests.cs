@@ -1,6 +1,6 @@
 using AutoFixture.Xunit2;
+using Lagkage.Contracts.Models;
 using Lagkage.Database;
-using Lagkage.Models;
 
 namespace Lagkage.Integration.Tests;
 

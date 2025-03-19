@@ -7,6 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <RootNamespace>Lagkage.Integration.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,7 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Lagkage.DbUp\Lagkage.DbUp.csproj" />
-      <ProjectReference Include="..\Lagkage\Lagkage.csproj" />
+      <ProjectReference Include="..\Lagkage.API\Lagkage.API.csproj" />
     </ItemGroup>
 
 </Project>

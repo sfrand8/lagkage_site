@@ -1,10 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage", "Lagkage\Lagkage.csproj", "{BAF27905-3290-40A6-AC51-A2B2C41E20CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.API", "Lagkage.API\Lagkage.API.csproj", "{BAF27905-3290-40A6-AC51-A2B2C41E20CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.DbUp", "Lagkage.DbUp\Lagkage.DbUp.csproj", "{9C69F6DC-35E4-413E-9896-69CAC50FDAAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Integration.Tests", "Lagkage.Integration.Tests\Lagkage.Integration.Tests.csproj", "{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.IntegrationTests", "Lagkage.IntegrationTests\Lagkage.IntegrationTests.csproj", "{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Database", "Lagkage.Database\Lagkage.Database.csproj", "{7714CF75-5BD2-4EBE-8039-8F681C9386EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Contracts", "Lagkage.Contracts\Lagkage.Contracts.csproj", "{91ACD36F-6A12-4C38-94C9-E030FAA330CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.UnitTests", "Lagkage.UnitTests\Lagkage.UnitTests.csproj", "{95DED4F1-E1D9-4572-873B-ED727E760F72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +30,17 @@ Global
 		{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7714CF75-5BD2-4EBE-8039-8F681C9386EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7714CF75-5BD2-4EBE-8039-8F681C9386EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7714CF75-5BD2-4EBE-8039-8F681C9386EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7714CF75-5BD2-4EBE-8039-8F681C9386EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
