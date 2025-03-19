@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lagkage.Controllers;
 
 [ApiController]
-[Route("mvc/api/cakelayers")]
+[Route("controller/api/cakelayers")]
 public class CakeLayerController : ControllerBase
 {
     private readonly ICakeLayerRepository _cakeLayerRepository;

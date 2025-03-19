@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Lagkage.Contracts.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Lagkage.Database;
 
@@ -8,7 +9,7 @@ public static class DBServiceCollectionExtensions
    {
       Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 
-      return services.AddScoped<CakeLayerRepository>();
+      return services.AddScoped<ICakeLayerRepository, CakeLayerRepository>();
    }
 }
 
