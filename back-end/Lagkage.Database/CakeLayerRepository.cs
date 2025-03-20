@@ -2,6 +2,7 @@
 using Dapper;
 using Lagkage.Contracts.Interfaces;
 using Lagkage.Contracts.Models;
+using Lagkage.Database.Mappers;
 using Npgsql;
 
 namespace Lagkage.Database;
@@ -15,17 +16,47 @@ public class CakeLayerRepository : ICakeLayerRepository
       _db = connection;
     }
 
-
-    public Task AddCakeLayer(CakeLayer cakeLayer)
+    public async Task<int> AddCakeLayer(CakeLayer cakeLayer)
     {
-        return _db.ExecuteAsync(@"INSERT INTO cakelayers (name, description, recipe_url, possible_layers)
-                                            VALUES (@Name,@Description,@RecipeUrl,@PossibleLayers)", cakeLayer);
+        const string query = """
+                             INSERT INTO cake_layers (id, name, description, recipe_url, possible_layers)
+                                                                         VALUES (@Id, @Name, @Description, @RecipeUrl, @PossibleLayers) 
+                                                                         ON CONFLICT (id) DO NOTHING 
+                                                                         RETURNING 1;
+                             """;
+        
+        return (await _db.QueryAsync<int>(query, cakeLayer.MapToDTO())).Single();
     }
 
     public async Task<IEnumerable<CakeLayer>> GetCakeLayers()
     {
-        return await _db.QueryAsync<CakeLayer>("SELECT * FROM cakelayers");
+        const string query = "SELECT * FROM cake_layers";
+        return (await _db.QueryAsync<CakeLayerDTO>(query)).Select(CakeLayerMapper.MapToDomain);
     }
+
+    public async Task<CakeLayer?> GetCakeLayerById(CakeLayerId id)
+    {
+        const string query = "SELECT * FROM cake_layers WHERE id = @Id";
+        
+        return ( await _db.QueryAsync<CakeLayerDTO>(query, new { Id = id.Value.ToString() }))
+            .SingleOrDefault()?.MapToDomain();
+    }
+
+    public Task DeleteCakeLayer(CakeLayerId id)
+    {
+        const string query = "DELETE FROM cake_layers WHERE id = @Id";
+        
+        return _db.ExecuteAsync(query, new { Id = id.Value.ToString() });
+    }
+}
+
+public class CakeLayerDTO
+{
+    public string Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public string RecipeUrl { get; set; }
+    public string[] PossibleLayers { get; set; }
 }
 
 

@@ -4,6 +4,7 @@ namespace Lagkage.Contracts.Interfaces;
 
 public interface ICakeLayerRepository
 {
-    Task AddCakeLayer(CakeLayer cakeLayer);
+    Task<int> AddCakeLayer(CakeLayer cakeLayer);
     Task<IEnumerable<CakeLayer>> GetCakeLayers();
+    Task DeleteCakeLayer(CakeLayerId id);
 }

@@ -1,6 +1,24 @@
 @Lagkage_HostAddress = http://localhost:5225
 
+### Controllers
+
 GET {{Lagkage_HostAddress}}/controller/api/cakelayers/
 Accept: application/json
 
 ###
+
+POST {{Lagkage_HostAddress}}/controller/api/cakelayers/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Chocolate Cake",
+  "description": "A delicious chocolate cake layer",
+  "recipeUrl": "https://example.com/chocolate-cake",
+  "possibleLayers": ["Vanilla", "Strawberry", "Caramel"]
+}
+
+### Minimal apis
+
+GET {{Lagkage_HostAddress}}/minimalapis/api/cakelayers/
+Accept: application/json

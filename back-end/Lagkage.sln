@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Database", "Lagkage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Contracts", "Lagkage.Contracts\Lagkage.Contracts.csproj", "{91ACD36F-6A12-4C38-94C9-E030FAA330CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.UnitTests", "Lagkage.UnitTests\Lagkage.UnitTests.csproj", "{95DED4F1-E1D9-4572-873B-ED727E760F72}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,9 +36,5 @@ Global
 		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95DED4F1-E1D9-4572-873B-ED727E760F72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,6 @@
 ﻿using Lagkage.Contracts.Interfaces;
 using Lagkage.Contracts.Models;
+using Lagkage.Controllers.Models;
 using Lagkage.Database;
 using Microsoft.AspNetCore.Mvc;
 namespace Lagkage.Controllers;
@@ -27,9 +28,17 @@ public class CakeLayerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> AddCakeLayer(CakeLayer cakeLayer)
+    public async Task<ActionResult> AddCakeLayer(AddCakeLayerRequest request)
     {
-        await _cakeLayerRepository.AddCakeLayer(cakeLayer);
+        await _cakeLayerRepository.AddCakeLayer(request.ToDomain());
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("/{id}")]
+    public async Task<ActionResult> DeleteCakeLayer([FromRoute] Guid id)
+    {
+        await _cakeLayerRepository.DeleteCakeLayer(new CakeLayerId(id));
         return Ok();
     }
 }
