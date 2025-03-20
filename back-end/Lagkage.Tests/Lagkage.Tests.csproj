@@ -11,9 +11,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoFixture.AutoMoq" Version="5.0.0-preview0012" />
         <PackageReference Include="AutoFixture.Xunit2" Version="4.18.1" />
         <PackageReference Include="coverlet.collector" Version="6.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+        <PackageReference Include="Moq" Version="4.20.72" />
         <PackageReference Include="Npgsql" Version="9.0.3" />
         <PackageReference Include="xunit" Version="2.5.3" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
@@ -26,6 +28,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Lagkage.DbUp\Lagkage.DbUp.csproj" />
       <ProjectReference Include="..\Lagkage.API\Lagkage.API.csproj" />
+      <ProjectReference Include="..\Lagkage.MinimalAPI\Lagkage.MinimalAPI.csproj" />
+      <ProjectReference Include="..\Lagkage.MVCAPI\Lagkage.MVCAPI.csproj" />
     </ItemGroup>
 
 </Project>

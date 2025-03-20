@@ -32,13 +32,8 @@ public class CakeLayerRepositoryTests
         var sut = new CakeLayerRepository(_databaseFixture.Connection);
         
         await sut.AddCakeLayer(cakeLayer);
-        var layers = await sut.GetCakeLayers();
+        var layer = await sut.GetCakeLayerById(cakeLayer.Id);
         
-        Assert.Contains(layers, x =>
-            x.Name == cakeLayer.Name &&
-            x.RecipeUrl == cakeLayer.RecipeUrl &&
-            x.Description == cakeLayer.Description &&
-           new HashSet<string>(x.PossibleLayers).SetEquals(cakeLayer.PossibleLayers)
-        );
+        Assert.True(cakeLayer.Equals(layer));
     }
 }
