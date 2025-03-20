@@ -28,6 +28,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Lagkage.DbUp\Lagkage.DbUp.csproj" />
       <ProjectReference Include="..\Lagkage.API\Lagkage.API.csproj" />
+      <ProjectReference Include="..\Lagkage.MinimalAPI\Lagkage.MinimalAPI.csproj" />
+      <ProjectReference Include="..\Lagkage.MVCAPI\Lagkage.MVCAPI.csproj" />
     </ItemGroup>
 
 </Project>

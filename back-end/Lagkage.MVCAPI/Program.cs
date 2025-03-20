@@ -1,7 +1,5 @@
-using System.Data;
+using System.Text.Json.Serialization;
 using Lagkage.Database;
-using Lagkage.MinimalApis;
-using Npgsql;
 
 internal class Program
 {
@@ -10,7 +8,10 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
         
         builder.Services.AddRepositories();
-        builder.Services.AddControllers();
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         
@@ -26,7 +27,6 @@ internal class Program
         app.UseAuthorization();
         
         app.MapControllers();
-        app.SetupMinimalAPIs();
         
         app.Run();
     }

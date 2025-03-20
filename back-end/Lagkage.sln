@@ -1,14 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.API", "Lagkage.API\Lagkage.API.csproj", "{BAF27905-3290-40A6-AC51-A2B2C41E20CF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.DbUp", "Lagkage.DbUp\Lagkage.DbUp.csproj", "{9C69F6DC-35E4-413E-9896-69CAC50FDAAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.IntegrationTests", "Lagkage.IntegrationTests\Lagkage.IntegrationTests.csproj", "{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Tests", "Lagkage.Tests\Lagkage.Tests.csproj", "{B163DCC4-8620-4742-84AD-58A5DDDCC9AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Database", "Lagkage.Database\Lagkage.Database.csproj", "{7714CF75-5BD2-4EBE-8039-8F681C9386EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.Contracts", "Lagkage.Contracts\Lagkage.Contracts.csproj", "{91ACD36F-6A12-4C38-94C9-E030FAA330CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.MinimalAPI", "Lagkage.MinimalAPI\Lagkage.MinimalAPI.csproj", "{8E8450BA-86FB-4E91-826F-EB2B53A45CC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lagkage.MVCAPI", "Lagkage.MVCAPI\Lagkage.MVCAPI.csproj", "{713D5F10-B6A3-43F9-8E38-524A6D93E11F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAF27905-3290-40A6-AC51-A2B2C41E20CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C69F6DC-35E4-413E-9896-69CAC50FDAAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C69F6DC-35E4-413E-9896-69CAC50FDAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C69F6DC-35E4-413E-9896-69CAC50FDAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +34,13 @@ Global
 		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91ACD36F-6A12-4C38-94C9-E030FAA330CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8450BA-86FB-4E91-826F-EB2B53A45CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8450BA-86FB-4E91-826F-EB2B53A45CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8450BA-86FB-4E91-826F-EB2B53A45CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8450BA-86FB-4E91-826F-EB2B53A45CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713D5F10-B6A3-43F9-8E38-524A6D93E11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713D5F10-B6A3-43F9-8E38-524A6D93E11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713D5F10-B6A3-43F9-8E38-524A6D93E11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713D5F10-B6A3-43F9-8E38-524A6D93E11F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
