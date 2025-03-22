@@ -1,4 +1,4 @@
-﻿namespace Lagkage.Integration.Tests;
+﻿namespace Lagkage.Integration.Tests.IntegrationTests;
 
 [CollectionDefinition("Database collection")]
 public class DatabaseTestCollection : ICollectionFixture<DatabaseFixture>
