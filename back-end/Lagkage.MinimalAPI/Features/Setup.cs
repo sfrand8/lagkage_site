@@ -4,9 +4,10 @@ namespace Lagkage.MinimalApis;
 
 public static class Setup
 {
+    // ReSharper disable once InconsistentNaming
     public static void MapMinimalAPIs(this IEndpointRouteBuilder app)
     {
-        GetCakeLayers.MapGetCakelayersEndpoint(app);
+        GetCakeLayers.MapGetCakeLayersEndpoint(app);
         AddCakeLayer.MapAddCakeLayerEndpoint(app);
     }
 }
