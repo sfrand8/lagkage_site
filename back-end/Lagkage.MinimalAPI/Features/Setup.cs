@@ -1,6 +1,4 @@
-﻿using Lagkage.MinimalAPI.Features;
-
-namespace Lagkage.MinimalApis;
+﻿namespace Lagkage.MinimalAPI.Features;
 
 public static class Setup
 {
@@ -9,5 +7,7 @@ public static class Setup
     {
         GetCakeLayers.MapGetCakeLayersEndpoint(app);
         AddCakeLayer.MapAddCakeLayerEndpoint(app);
+        DeleteCakeLayer.MapDeleteCakeLayerEndpoint(app);
+        GetCakeLayerById.MapGetCakeLayersEndpoint(app);
     }
 }

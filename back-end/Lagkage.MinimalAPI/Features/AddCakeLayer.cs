@@ -41,14 +41,14 @@ public static class AddCakeLayer
     
     public static void MapAddCakeLayerEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("minimalapis/api/cakelayers", AddCakeLayers)
+        app.MapPost("minimalapis/api/cakelayers", HandleHttpRequest)
             .WithTags("AddCakeLayers")
             .WithName("Add Cake Layer")
             .WithDescription("Adds a cake layer to the list of possible cake layers. Name has to be a new unique name for the layer.")
             .AllowAnonymous();
     }
 
-    public static async Task<Results<Created<string>, Conflict<string>>> AddCakeLayers(
+    public static async Task<Results<Created<string>, Conflict<string>>> HandleHttpRequest(
         IMediator mediator, AddCakeLayerRequest request)
     {
         var cmd = new AddCakeLayerCommand

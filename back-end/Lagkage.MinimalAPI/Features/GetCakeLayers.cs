@@ -27,14 +27,14 @@ public static class GetCakeLayers
     
     public static void MapGetCakeLayersEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("minimalapis/api/cakelayers", HandleRequest)
+        app.MapGet("minimalapis/api/cakelayers", HandleHttpRequest)
             .WithTags("GetCakelayers")
             .WithName("GetCakelayers")
             .WithDescription("Get all cake layers that can be added to cakes")
             .AllowAnonymous();
     }
 
-    public static async Task<Results<Ok<IEnumerable<HttpCakeLayer>>, NotFound>> HandleRequest(IMediator mediator)
+    public static async Task<Results<Ok<IEnumerable<HttpCakeLayer>>, NotFound>> HandleHttpRequest(IMediator mediator)
     {
         var result = await mediator.Send(new GetCakeLayersRequest());
 

@@ -25,7 +25,7 @@ public class AddCakeLayerTests
                 .ReturnsAsync(MedidatRResult<CakeLayerId>.Success(expectedId));
 
             // Act
-            var result = await AddCakeLayer.AddCakeLayers(mediatorMock.Object, cakeLayerToAdd);
+            var result = await AddCakeLayer.HandleHttpRequest(mediatorMock.Object, cakeLayerToAdd);
 
             // Assert
             var createdResult = Assert.IsAssignableFrom<Created<string>>(result.Result);
@@ -43,7 +43,7 @@ public class AddCakeLayerTests
                 .ReturnsAsync(MedidatRResult<CakeLayerId>.Failure(CakeLayerErrors.CakeLayerAlreadyExists));
 
             // Act
-            var result = await AddCakeLayer.AddCakeLayers(mediatorMock.Object, cakeLayerToAdd);
+            var result = await AddCakeLayer.HandleHttpRequest(mediatorMock.Object, cakeLayerToAdd);
 
             // Assert
             var conflictResult = Assert.IsAssignableFrom<Conflict<string>>(result.Result);
