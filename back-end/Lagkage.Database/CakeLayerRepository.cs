@@ -25,7 +25,7 @@ public class CakeLayerRepository : ICakeLayerRepository
                                                                          RETURNING 1;
                              """;
         
-        return (await _db.QueryAsync<int>(query, cakeLayer.MapToDTO())).Single();
+        return (await _db.QueryAsync<int?>(query, cakeLayer.MapToDTO())).SingleOrDefault() ?? 0;
     }
 
     public async Task<IEnumerable<CakeLayer>> GetCakeLayers()

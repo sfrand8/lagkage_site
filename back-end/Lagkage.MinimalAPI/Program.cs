@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Lagkage.Database;
+using Lagkage.MinimalAPI.Features;
 using Lagkage.MinimalApis;
 using Scalar.AspNetCore;
 
@@ -15,6 +16,7 @@ internal class Program
         {
             options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()); 
         });
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
         
         var app = builder.Build();
 
@@ -30,6 +32,7 @@ internal class Program
         }
         
         app.MapMinimalAPIs();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
         app.Run();

@@ -1,12 +1,31 @@
 ﻿using Lagkage.Contracts.Http;
 using Lagkage.Contracts.Interfaces;
+using Lagkage.Contracts.Models;
+using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Lagkage.MinimalAPI.Features;
 
 public static class GetCakeLayers
 {
-    public static void MapGetCakelayersEndpoint(IEndpointRouteBuilder app)
+    public record GetCakeLayersRequest : IRequest<MedidatRResult<IEnumerable<CakeLayer>>>{}
+
+    public class GetCakeLayersHandler : IRequestHandler<GetCakeLayersRequest, MedidatRResult<IEnumerable<CakeLayer>>>
+    {
+        private readonly ICakeLayerRepository _repository;
+
+        public GetCakeLayersHandler(ICakeLayerRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<MedidatRResult<IEnumerable<CakeLayer>>> Handle(GetCakeLayersRequest request, CancellationToken cancellationToken)
+        {
+            return MedidatRResult<IEnumerable<CakeLayer>>.Success(await _repository.GetCakeLayers());
+        }
+    } 
+    
+    public static void MapGetCakeLayersEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet("minimalapis/api/cakelayers", HandleRequest)
             .WithTags("GetCakelayers")
@@ -15,10 +34,16 @@ public static class GetCakeLayers
             .AllowAnonymous();
     }
 
-    public static async Task<Results<Ok<IEnumerable<HttpCakeLayer>>, NotFound>> HandleRequest(ICakeLayerRepository repository)
+    public static async Task<Results<Ok<IEnumerable<HttpCakeLayer>>, NotFound>> HandleRequest(IMediator mediator)
     {
-        var cakeLayers = (await repository.GetCakeLayers()).ToList();
+        var result = await mediator.Send(new GetCakeLayersRequest());
+
+        if (!result.IsSuccess)
+        {
+            throw new UnhandledErrorException("Non successful get cake layers request", result.Error);
+        }
         
+        var cakeLayers = result.Value.ToList();
         if (cakeLayers.Count == 0)
         {
             return TypedResults.NotFound();
