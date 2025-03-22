@@ -1,9 +1,8 @@
 ﻿using System.Data;
-using System.Diagnostics;
 using Dapper;
 using Npgsql;
 
-namespace Lagkage.Integration.Tests;
+namespace Lagkage.Integration.Tests.IntegrationTests;
 public class DatabaseFixture : IDisposable
 {
     private readonly string _connectionString;

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-
-namespace Lagkage.MinimalAPI.Features;
+﻿namespace Lagkage.MinimalAPI.Features;
 
 public class ExceptionHandlingMiddleware
 {

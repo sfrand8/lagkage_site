@@ -6,6 +6,19 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Lagkage.MinimalAPI.Features;
 
+//Notes for other potential readers, I don't think using Mediator in Vertical slicing is a good idea, I was looking at what
+//a few people suggested online for doing vertical slicing in .Net and gave it ago, but making this big of an overhead
+//when you are deciding to more tightly couple your code in a feature by feature slicing seems like a big over-head.
+//The idea with vertical slicing is also that the domain code in the feature is only triggered inside that feature,
+//but a big gain with mediatoR is that you can trigger commands anywhere in the application which is simply not a big issue
+//when doing vertical slicing.
+//I do get test-ability of each different part of the feature, e.g. the command handler, the endpoint handler, etc.
+//but you could just as well make a "commandHandler" which is just some interface you create in the feature and then
+//inject that into the endpoint handler, and then test the command handler separately.
+//You do get a nice pipeline setup with MediatoR that can be useful for some common functionality like logging or metrics,
+//but I think you could just as well do that with a middleware pipeline in the API.
+//Especially if you don't have any other I/O in the api.
+
 public static class AddCakeLayer
 {
     public record AddCakeLayerCommand :  IRequest<MedidatRResult<CakeLayerId>>

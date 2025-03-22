@@ -2,7 +2,7 @@ using AutoFixture.Xunit2;
 using Lagkage.Contracts.Models;
 using Lagkage.Database;
 
-namespace Lagkage.Integration.Tests;
+namespace Lagkage.Integration.Tests.IntegrationTests;
 
 [Collection("Database collection")]
 public class CakeLayerRepositoryTests
