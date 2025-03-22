@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Lagkage.Database;
 using Lagkage.MinimalAPI.Features;
-using Lagkage.MinimalApis;
 using Scalar.AspNetCore;
 
 internal class Program

@@ -23,7 +23,7 @@ public class GetCakeLayersTests
                 .ReturnsAsync(MedidatRResult<IEnumerable<CakeLayer>>.Success(new List<CakeLayer>()));
 
             // Act
-            var result = await GetCakeLayers.HandleRequest(mediatorMock.Object);
+            var result = await GetCakeLayers.HandleHttpRequest(mediatorMock.Object);
 
             // Assert
             Assert.IsType<NotFound>(result.Result);
@@ -39,7 +39,7 @@ public class GetCakeLayersTests
                 .ReturnsAsync(MedidatRResult<IEnumerable<CakeLayer>>.Success(cakeLayers));
 
             // Act
-            var result = await GetCakeLayers.HandleRequest(mediatorMock.Object);
+            var result = await GetCakeLayers.HandleHttpRequest(mediatorMock.Object);
 
             // Assert
             var okResult = Assert.IsType<Ok<IEnumerable<HttpCakeLayer>>>(result.Result);
