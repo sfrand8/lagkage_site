@@ -5,7 +5,7 @@ using Lagkage.Contracts.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace Lagkage.UnitTests;
+namespace Lagkage.Integration.Tests.UnitTests.MVCAPI;
 
 public class GetCakeLayersControllerTests
 {

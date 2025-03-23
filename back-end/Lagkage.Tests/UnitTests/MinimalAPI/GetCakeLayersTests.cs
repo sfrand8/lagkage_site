@@ -3,12 +3,11 @@ using Lagkage.Contracts.Http;
 using Lagkage.Contracts.Interfaces;
 using Lagkage.Contracts.Models;
 using Lagkage.MinimalAPI.Features;
-using Lagkage.UnitTests;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
 
-namespace Lagkage.Integration.Tests.MinimalAPI;
+namespace Lagkage.Integration.Tests.UnitTests.MinimalAPI;
 
 public class GetCakeLayersTests
 {
@@ -42,12 +41,12 @@ public class GetCakeLayersTests
             var result = await GetCakeLayers.HandleHttpRequest(mediatorMock.Object);
 
             // Assert
-            var okResult = Assert.IsType<Ok<IEnumerable<HttpCakeLayer>>>(result.Result);
+            var okResult = Assert.IsType<Ok<GetCakeLayersResponse>>(result.Result);
             var response = okResult.Value;
 
             Assert.NotNull(response);
             Assert.All(cakeLayers, cakeLayer =>
-                Assert.Contains(cakeLayer.ToHttpModel(), response));
+                Assert.Contains(cakeLayer.ToHttpModel(), response.CakeLayers));
 
             mediatorMock.Verify(x => x.Send(new GetCakeLayers.GetCakeLayersRequest(), It.IsAny<CancellationToken>()),
                 Times.Once);

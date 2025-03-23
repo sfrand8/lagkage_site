@@ -3,12 +3,11 @@ using Lagkage.Contracts.Http;
 using Lagkage.Contracts.Interfaces;
 using Lagkage.Contracts.Models;
 using Lagkage.MinimalAPI.Features;
-using Lagkage.UnitTests;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
 
-namespace Lagkage.Integration.Tests.MinimalAPI;
+namespace Lagkage.Integration.Tests.UnitTests.MinimalAPI;
 
 public class AddCakeLayerTests
 {
@@ -28,8 +27,8 @@ public class AddCakeLayerTests
             var result = await AddCakeLayer.HandleHttpRequest(mediatorMock.Object, cakeLayerToAdd);
 
             // Assert
-            var createdResult = Assert.IsAssignableFrom<Created<string>>(result.Result);
-            Assert.Equal(expectedId.Value.ToString(), createdResult.Value);
+            var createdResult = Assert.IsAssignableFrom<Created<AddCakeLayerResponse>>(result.Result);
+            Assert.Equal(expectedId.Value.ToString(), createdResult.Value.CakeLayerId);
         }
         
         [Theory, AutoMoqControllerData]
@@ -62,12 +61,19 @@ public class AddCakeLayerTests
             // Arrange
             cakeLayerRepositoryMock.Setup(x => x.AddCakeLayer(It.IsAny<CakeLayer>()))
                 .ReturnsAsync(1);
+            var expectedCakeLayer = new CakeLayer(
+                new CakeLayerId(command.Name), 
+                command.Name,
+                command.Description, 
+                command.RecipeUrl, 
+                command.PossibleLayers);
 
             // Act
             var result = await sut.Handle(command, CancellationToken.None);
 
             // Assert
-            cakeLayerRepositoryMock.Verify(x => x.AddCakeLayer(It.IsAny<CakeLayer>()), Times.Once);
+            cakeLayerRepositoryMock.Verify(x => x.AddCakeLayer(expectedCakeLayer), Times.Once);
+            Assert.Equal(expectedCakeLayer.Id.Value, result.Value.Value);
         }
     }
 }

@@ -38,7 +38,7 @@ public static class DeleteCakeLayer
             .AllowAnonymous();
     }
 
-    public static async Task<Ok> HandleHttp(
+    public static async Task<NoContent> HandleHttp(
         IMediator mediator, Guid id)
     {
         var result = await mediator.Send(new DeleteCakeLayerCommand{ Id =  new CakeLayerId(id)});
@@ -48,6 +48,6 @@ public static class DeleteCakeLayer
             throw new UnhandledErrorException("Error type not handled in AddCakeLayerEndpoint", result.Error);
         }
 
-        return TypedResults.Ok();
+        return TypedResults.NoContent();
     }
 }

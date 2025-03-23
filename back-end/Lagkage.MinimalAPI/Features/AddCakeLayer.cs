@@ -61,7 +61,7 @@ public static class AddCakeLayer
             .AllowAnonymous();
     }
 
-    public static async Task<Results<Created<string>, Conflict<string>>> HandleHttpRequest(
+    public static async Task<Results<Created<AddCakeLayerResponse>, Conflict<string>>> HandleHttpRequest(
         IMediator mediator, AddCakeLayerRequest request)
     {
         var cmd = new AddCakeLayerCommand
@@ -87,6 +87,6 @@ public static class AddCakeLayer
         
         var location = $"/minimalapis/api/cakelayers/{result.Value.Value.ToString()}";
     
-        return TypedResults.Created(location, result.Value.Value.ToString());
+        return TypedResults.Created(location, new AddCakeLayerResponse{ CakeLayerId = result.Value.Value.ToString() });
     }
 }

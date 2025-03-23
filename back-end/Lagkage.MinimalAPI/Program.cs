@@ -3,7 +3,7 @@ using Lagkage.Database;
 using Lagkage.MinimalAPI.Features;
 using Scalar.AspNetCore;
 
-internal class Program
+public class Program
 {
     public static void Main(string[] args)
     {

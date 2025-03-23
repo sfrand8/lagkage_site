@@ -34,7 +34,7 @@ public static class GetCakeLayers
             .AllowAnonymous();
     }
 
-    public static async Task<Results<Ok<IEnumerable<HttpCakeLayer>>, NotFound>> HandleHttpRequest(IMediator mediator)
+    public static async Task<Results<Ok<GetCakeLayersResponse>, NotFound>> HandleHttpRequest(IMediator mediator)
     {
         var result = await mediator.Send(new GetCakeLayersRequest());
 
@@ -49,6 +49,6 @@ public static class GetCakeLayers
             return TypedResults.NotFound();
         }
         
-        return TypedResults.Ok(cakeLayers.Select(x => x.ToHttpModel()));
+        return TypedResults.Ok(new GetCakeLayersResponse{CakeLayers = cakeLayers.Select(x => x.ToHttpModel())});
     }
 }

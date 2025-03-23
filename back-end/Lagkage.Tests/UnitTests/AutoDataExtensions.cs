@@ -4,7 +4,7 @@ using AutoFixture.Xunit2;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lagkage.UnitTests;
+namespace Lagkage.Integration.Tests.UnitTests;
 
 public class AutoMoqDataAttribute : AutoDataAttribute
 {

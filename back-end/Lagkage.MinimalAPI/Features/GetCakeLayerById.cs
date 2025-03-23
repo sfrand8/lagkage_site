@@ -35,7 +35,7 @@ public static class GetCakeLayerById
     
     public static void MapGetCakeLayersEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("minimalapis/api/cakelayer/{id}", HandleHttpRequest)
+        app.MapGet("minimalapis/api/cakelayers/{id}", HandleHttpRequest)
             .WithTags("GetCakelayer")
             .WithName("Get a Cake layer")
             .WithDescription("Get a cake layer that can be added to cakes")
