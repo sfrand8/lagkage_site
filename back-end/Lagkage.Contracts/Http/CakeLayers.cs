@@ -28,6 +28,11 @@ public record HttpCakeLayerToAdd
     }
 }
 
+public record AddCakeLayerResponse
+{
+    public string CakeLayerId { get; init; }
+}
+
 public record GetCakeLayersResponse
 {
     public IEnumerable<HttpCakeLayer> CakeLayers { get; init; }

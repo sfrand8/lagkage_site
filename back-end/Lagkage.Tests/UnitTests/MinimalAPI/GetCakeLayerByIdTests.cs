@@ -3,12 +3,11 @@ using Lagkage.Contracts.Http;
 using Lagkage.Contracts.Interfaces;
 using Lagkage.Contracts.Models;
 using Lagkage.MinimalAPI.Features;
-using Lagkage.UnitTests;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
 
-namespace Lagkage.Integration.Tests.MinimalAPI;
+namespace Lagkage.Integration.Tests.UnitTests.MinimalAPI;
 
 public class GetCakeLayerByIdTests
 {

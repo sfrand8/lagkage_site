@@ -1,21 +1,19 @@
 ﻿using AutoFixture.Xunit2;
-using Lagkage.Contracts.Http;
 using Lagkage.Contracts.Interfaces;
 using Lagkage.Contracts.Models;
 using Lagkage.MinimalAPI.Features;
-using Lagkage.UnitTests;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
 
-namespace Lagkage.Integration.Tests.MinimalAPI;
+namespace Lagkage.Integration.Tests.UnitTests.MinimalAPI;
 
 public class DeleteCakeLayerTests
 {
     public class HttpEndpointTests
     {
         [Theory, AutoMoqControllerData]
-        public async Task ReturnOkWhenLayerDeleted(
+        public async Task ReturnNoContentWhenLayerDeleted(
             [Frozen] Mock<IMediator> mediatorMock,
             Guid id)
         {
@@ -27,7 +25,7 @@ public class DeleteCakeLayerTests
             var result = await DeleteCakeLayer.HandleHttp(mediatorMock.Object, id);
 
             // Assert
-            Assert.IsType<Ok>(result);
+            Assert.IsType<NoContent>(result);
         }
     }
     
