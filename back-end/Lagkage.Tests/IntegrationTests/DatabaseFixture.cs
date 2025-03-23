@@ -1,100 +1,112 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.IO;
+using System.Linq;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 
-namespace Lagkage.Integration.Tests.IntegrationTests;
 public class DatabaseFixture : IDisposable
 {
-    private readonly string _connectionString;
+    private readonly string _baseConnectionString;
     private readonly string _testDbName = "lagkage_test_database"; // Define test DB name separately
-    
-    public IDbConnection Connection => new NpgsqlConnection(_connectionString + $"Database={_testDbName}");
-    private string ConnectionString => _connectionString + $"Database={_testDbName};";
+
+    public IDbConnection Connection => new NpgsqlConnection(TestDatabaseConnectionString);
+
+    private string TestDatabaseConnectionString => $"{_baseConnectionString};Database={_testDbName};";
+    private string PostgresDatabaseConnectionString => $"{_baseConnectionString};Database=postgres;";
 
     public DatabaseFixture()
     {
         DefaultTypeMap.MatchNamesWithUnderscores = true;
-        
-        // Define connection string for your PostgreSQL server
-        _connectionString = "Host=localhost;Port=5432;Username=admin;Password=secret;";
+
+        // Load the connection string from appsettings.Development.json
+        _baseConnectionString = GetBaseConnectionString();
 
         // Ensure the test database exists and is ready
         CreateTestDatabase();
-        
+
         // Run migrations
         RunMigrations();
     }
 
+    private string GetBaseConnectionString()
+    {
+        var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Development";
+        
+        string appSettingsFile = $"appsettings.{environment}.json";
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory()) // Ensure correct path
+            .AddJsonFile(appSettingsFile, optional: false, reloadOnChange: true)
+            .Build();
+
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new Exception($"Connection string 'DefaultConnection' not found in {appSettingsFile}");
+        }
+
+        return RemoveDatabaseFromConnectionString(connectionString);
+    }
+
+    private string RemoveDatabaseFromConnectionString(string connectionString)
+    {
+        var builder = new NpgsqlConnectionStringBuilder(connectionString);
+        builder.Remove("Database"); // Remove database key if present
+        return builder.ToString();
+    }
+
     public bool CheckDatabaseExists()
     {
-        using (var connection = new NpgsqlConnection(_connectionString  +  "Database=postgres;"))
-        {
-            connection.Open();
-            
-            // Query the pg_database table to see if the database exists
-            var result = connection.Query<int>(
-                "SELECT 1 FROM pg_database WHERE datname = @DbName",
-                new { DbName = _testDbName }).FirstOrDefault();
+        using var connection = new NpgsqlConnection(PostgresDatabaseConnectionString);
+        connection.Open();
 
-            return result == 1;
-        }
+        return connection.Query<int>(
+            "SELECT 1 FROM pg_database WHERE datname = @DbName",
+            new { DbName = _testDbName }).FirstOrDefault() == 1;
     }
-    
-    // Helper method to create the test database
+
     private void CreateTestDatabase()
     {
-        // Connect to the default "postgres" database to create "mydatabase"
-        var connectionStringForCreateDb = _connectionString + "Database=postgres;"; 
+        using var connection = new NpgsqlConnection(PostgresDatabaseConnectionString);
+        connection.Open();
 
-        using (var connection = new NpgsqlConnection(connectionStringForCreateDb))
+        if (!CheckDatabaseExists())
         {
-            connection.Open();
-
-            if (!CheckDatabaseExists()) // Only create if it doesn't already exist
-            {
-                // Create the database
-                using (var cmd = new NpgsqlCommand($"CREATE DATABASE {_testDbName};", connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            using var cmd = new NpgsqlCommand($"CREATE DATABASE {_testDbName};", connection);
+            cmd.ExecuteNonQuery();
         }
     }
-    
+
     private void RunMigrations()
     {
-        var result = DbUpMigrator.RunMigrations(ConnectionString);
+        var result = DbUpMigrator.RunMigrations(TestDatabaseConnectionString);
 
-        if (result.Successful == false)
+        if (!result.Successful)
         {
             throw new Exception($"Migration failed: {result.Error}");
         }
     }
 
-    // Clean up by truncating the tables after tests
     public void Dispose()
     {
         TruncateAllTables();
     }
-    
+
     public void TruncateAllTables()
     {
-        // Connect to the "mydatabase" for truncating the tables
-        using (var connection = new NpgsqlConnection(ConnectionString))
+        using var connection = new NpgsqlConnection(TestDatabaseConnectionString);
+        connection.Open();
+
+        var tables = connection.Query<string>(
+            "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';"
+        ).ToList();
+
+        foreach (var table in tables)
         {
-            connection.Open();
-
-            // Get the list of all tables
-            var tables = connection.Query<string>("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';").ToList();
-
-            // Truncate each table
-            foreach (var table in tables)
-            {
-                using (var cmd = new NpgsqlCommand($"TRUNCATE TABLE {table} RESTART IDENTITY CASCADE;", connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            using var cmd = new NpgsqlCommand($"TRUNCATE TABLE {table} RESTART IDENTITY CASCADE;", connection);
+            cmd.ExecuteNonQuery();
         }
     }
 }

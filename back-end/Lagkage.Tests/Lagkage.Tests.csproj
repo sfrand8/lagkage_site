@@ -33,4 +33,11 @@
       <ProjectReference Include="..\Lagkage.MVCAPI\Lagkage.MVCAPI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="appsettings.Test.json" />
+      <Content Include="appsettings.Development.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
